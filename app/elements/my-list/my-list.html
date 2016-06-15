@@ -37,6 +37,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer({
         is: 'my-list',
 
+        listeners: {
+       'tap': 'regularTap',
+       'special.tap': 'specialTap'
+     },
+
+     regularTap: function(e) {
+       alert("Thank you for tapping");
+       //TweenMax.to('my-list', 0.5, {ease: "Power2.easeOut", x: 150});
+     },
+
+     specialTap: function(e) {
+       alert("It was special tapping");
+     },
+
         properties: {
           items: {
             type: Array,
@@ -51,7 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             'End-to-end Build Tooling (including Vulcanize)',
             'Unit testing with Web Component Tester',
             'Routing with Page.js',
-            'Offline support with the Platinum Service Worker Elements'
+            'Offline support with the Platinum Service Worker Elements',
+            'ekbrgjoebrg'
           ];
         }
       });

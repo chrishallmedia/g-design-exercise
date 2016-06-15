@@ -1,0 +1,37 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="list-example">
+<style>
+:host {
+  display: block;
+}
+
+iron-list {
+  --iron-list-items-container: {
+    margin: auto;
+  };
+   /*@apply(--layout-horizontal);*/
+}
+</style>
+
+<template>
+  <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
+  <iron-list items="[[data]]" as="item">
+    <template>
+      <paper-button>[[item.name]]</paper-button>
+    </template>
+  </iron-list>
+</template>
+</dom-module>
+
+<script>
+(function () {
+
+  'use strict';
+
+  Polymer({
+    is: 'list-example',
+  });
+})();
+</script>

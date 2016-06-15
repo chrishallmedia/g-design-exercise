@@ -7,8 +7,53 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+
 body {
-  background: #fafafa;
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #F3F3F3;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   color: #333;
+}
+
+paper-button.fancy {
+  background: #fafafa;
+}
+
+.rowContainer > paper-card {
+    display: inline-block;
+    width: 240px; // You need a fixed width for your columns
+    margin: 8px;
+}
+
+
+#mainToolbar, #navToolbar {
+  background:#03A9F4;
+}
+
+#navToolbar {
+  color:#fff;
+}
+
+.content {
+
+}
+
+.img-profile {
+  border-radius:50%;
+  padding:20px;
+}
+
+.names {
+  border-top:1px solid #eee;
+  margin-top:20px;
+  margin-left:-16px;
+  margin-right:-16px;
+  margin-bottom:-16px;
+}
+.name-right{
+  border-left:1px solid #eee;
+}
+
+.name-right, .name-left {
+    width: 100%;
+    text-align: center;
 }
