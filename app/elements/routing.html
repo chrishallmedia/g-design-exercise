@@ -21,14 +21,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       page.base(app.baseUrl.replace(/\/$/, ''));
     }
 
+    // Middleware
+    // function scrollToTop(ctx, next) {
+    //   app.scrollPageToTop();
+    //   next();
+    // }
+    //
+    // function closeDrawer(ctx, next) {
+    //   app.closeDrawer();
+    //   next();
+    // }
+    //
+    // function setFocus(selected){
+    //   document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
+    // }
+
+    // Routes
+    page('*', function(ctx, next) {
+      next();
+    });
 
     page('/', function() {
-      app.route = 'about';
+      app.route = 'home';
+    //  setFocus(app.route);
     });
 
     page(app.baseUrl, function() {
-      app.route = 'about';
+      app.route = 'home';
+    //  setFocus(app.route);
     });
+
 
     // 404
     page('*', function() {

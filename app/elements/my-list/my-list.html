@@ -10,66 +10,203 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="my-list">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
+  <style>
+  .img-profile {
+    border-radius:50%;
+    padding:20px;
+    margin-top:12px;
+  }
 
-      span {
-        @apply(--paper-font-body1);
-      }
-    </style>
+  .names {
+    border-top:1px solid #eee;
+    margin-top:20px;
+    margin-left:-16px;
+    margin-right:-16px;
+    margin-bottom:-16px;
+    padding:0 16px;
+  }
+  .name-right{
+    border-left:1px solid #eee;
+  }
 
-    <ul>
-      <template is="dom-repeat" items="{{items}}">
-        <li><span>{{item}}</span></li>
-      </template>
-    </ul>
+  .name-right, .name-left {
+    width: 100%;
+    text-align: center;
+    position:relative;
+    padding-bottom:14px;
+  }
+
+  h3.name-title {
+    font-weight:normal;
+
+  }
+
+  paper-material {
+    background: #fff;
+    margin:8px 8px 24px 8px;
+  }
+
+  .name-info {
+    font-size:14px;
+    line-height: 8px;
+    color:#ACACAC;
+  }
+
+  .correct{
+    background:red;
+  }
+
+  .circle {
+    background: #FF3B80;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    position:absolute;
+    left:calc(50% - 15px);
+    top:-20px;
+    opacity:0;
+    border:3px solid #fff;
+  }
+
+  iron-icon {
+    fill: #ffffff;
+  }
+
+  </style>
+  <template is="dom-repeat" items="{{items}}">
+    <paper-material elevation="1">
+      <div class="layout center-justified horizontal">
+        <img class="img-profile" height="95" width="95" src="{{item.image}}"/>
+      </div>
+      <div class="layout end-justified horizontal names">
+        <div class="name-left" on-tap="wrongTap">
+          <paper-ripple></paper-ripple>
+
+          <h3 class="name-title">{{item.leftname}}</h3>
+          <p class="name-info">{{item.leftgrade}}</p>
+          <p class="name-info">{{item.leftcity}}</p>
+        </div>
+        <div class="name-right" on-tap="rightTap">
+          <paper-ripple></paper-ripple>
+          <div class="circle layout center-justified horizontal center"><iron-icon icon="icons:check"></iron-icon></div>
+          <h3 class="name-title">{{item.rightname}}</h3>
+          <p class="name-info">{{item.rightgrade}}</p>
+          <p class="name-info">{{item.rightcity}}</p>
+        </div>
+      </div>
+    </paper-material>
   </template>
+</template>
 
-  <script>
-    (function() {
-      'use strict';
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 
-      Polymer({
-        is: 'my-list',
+<script>
+(function() {
+  'use strict';
 
-        listeners: {
-       'tap': 'regularTap',
-       'special.tap': 'specialTap'
-     },
+  Polymer({
+    is: 'my-list',
 
-     regularTap: function(e) {
-       alert("Thank you for tapping");
-       //TweenMax.to('my-list', 0.5, {ease: "Power2.easeOut", x: 150});
-     },
 
-     specialTap: function(e) {
-       alert("It was special tapping");
-     },
 
-        properties: {
-          items: {
-            type: Array,
-            notify: true,
-          }
+    wrongTap: function(e, detail) {
+
+      var wrong = Polymer.dom(e.currentTarget.parentNode.parentNode).querySelector('.img-profile')
+      wrong.classList.add("animated", "headShake");
+
+      window.setTimeout( function(){
+        wrong.classList.remove("animated", "headShake");
+      }, 500);
+
+    },
+
+    rightTap: function(e, detail) {
+
+      var easy = e.currentTarget;
+      var right = Polymer.dom(e.currentTarget.parentNode).querySelector('.circle')
+      right.classList.add("animated", "bounceIn");
+
+      window.setTimeout( function(){
+        right.classList.remove("animated", "bounceIn");
+      }, 1000);
+
+    },
+
+    properties: {
+      items: {
+        type: Array,
+        notify: true,
+      }
+    },
+
+    ready: function() {
+
+      this.items = [
+        {
+          "image": "../../images/profile-1.jpg",
+          "leftname": "Dickie Bennett",
+          "leftgrade": "Freshman",
+          "leftcity": "Yuba City, CA",
+          "rightname": "Boyd Crowder",
+          "rightgrade": "Sophomore",
+          "rightcity": "Erie, CO"
         },
-
-        ready: function() {
-          this.items = [
-            'Responsive Web App boilerplate',
-            'Iron Elements and Paper Elements',
-            'End-to-end Build Tooling (including Vulcanize)',
-            'Unit testing with Web Component Tester',
-            'Routing with Page.js',
-            'Offline support with the Platinum Service Worker Elements',
-            'ekbrgjoebrg'
-          ];
+        {
+          "image": "../../images/profile-2.jpg",
+          "leftname": "Kathrine Hale",
+          "leftgrade": "Senior",
+          "leftcity": "Broomfield, CO",
+          "rightname": "Ellen May",
+          "rightgrade": "Freshman",
+          "rightcity": "Santa Cruz, CA"
+        },
+        {
+          "image": "../../images/profile-3.jpg",
+          "leftname": "Ty Walker",
+          "leftgrade": "Junior",
+          "leftcity": "Denver, CO",
+          "rightname": "Ethan Picker",
+          "rightgrade": "Freshman",
+          "rightcity": "Gridley, CA"
+        },
+        {
+          "image": "../../images/profile-4.jpg",
+          "leftname": "Tom Bergen",
+          "leftgrade": "Sophomore",
+          "leftcity": "Boulder, CO",
+          "rightname": "Nick Mooney",
+          "rightgrade": "Junior",
+          "rightcity": "Live Oak, CA"
+        },
+        {
+          "image": "../../images/profile-5.jpg",
+          "leftname": "Loretta McCready",
+          "leftgrade": "Freshman",
+          "leftcity": "San Jose, CA",
+          "rightname": "Mags Bennett",
+          "rightgrade": "Senior",
+          "rightcity": "Portland, OR"
+        },
+        {
+          "image": "../../images/profile-6.jpg",
+          "leftname": "Danny Crowe",
+          "leftgrade": "Sophomore",
+          "leftcity": "Chico, CA",
+          "rightname": "Johnny Crowder",
+          "rightgrade": "Freshman",
+          "rightcity": "Seattle, WA"
         }
-      });
-    })();
-  </script>
+      ];
+      for(var i = 0; i < this.items.length; i++) {
+        this.items[i].index = i;
+      }
+    }
+  });
+})();
+</script>
 </dom-module>
