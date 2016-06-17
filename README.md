@@ -8,3 +8,4 @@
 * Gulp
 * animate.css
 
+http://www.chrishallmedia.com/gde/
