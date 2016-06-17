@@ -1,10 +1,10 @@
 
 ## Student naming practice screen
 
-Tools used in this project:
+#### Tools used in this project:
 
-Polymer
-Yeoman
-Gulp
-animate.css
+* Polymer
+* Yeoman
+* Gulp
+* animate.css
 
